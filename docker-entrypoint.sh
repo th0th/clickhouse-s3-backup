@@ -14,7 +14,7 @@ SECONDS=0
 
 # optional environment variables with defaults
 FILE_NAME="${FILE_NAME:-"%F_%T"}"
-CLICKHOUSE_HOST="${CLICKHOUSE_HOST}:-localhost"
+CLICKHOUSE_HOST="${CLICKHOUSE_HOST}:-clickhouse"
 CLICKHOUSE_PORT="${CLICKHOUSE_PORT:-9000}"
 
 # logic starts here
@@ -23,6 +23,8 @@ DATED_FILE_NAME_GZ="${DATED_FILE_NAME}.gz"
 
 echo "Exporting the results for the query..."
 clickhouse-client \
+  --host "${CLICKHOUSE_HOST}" \
+  --port "${CLICKHOUSE_PORT}" \
   --query "${CLICKHOUSE_QUERY}" \
   --format Native | pigz --fast > "${DATED_FILE_NAME_GZ}"
 echo "Exporting the results for the query... Done."
