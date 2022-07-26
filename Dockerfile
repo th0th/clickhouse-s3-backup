@@ -1,9 +1,9 @@
-FROM clickhouse/clickhouse-client:latest
+FROM clickhouse/clickhouse-server:latest-alpine
 
 WORKDIR /root
 
-RUN apt update && \
-    apt install bash pigz rclone
+RUN apk update && \
+    apk add bash pigz rclone
 
 COPY docker-entrypoint.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh
