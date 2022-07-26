@@ -14,7 +14,7 @@ SECONDS=0
 
 # optional environment variables with defaults
 FILE_NAME="${FILE_NAME:-"%F_%T"}"
-CLICKHOUSE_HOST="${CLICKHOUSE_HOST}:-clickhouse"
+CLICKHOUSE_HOST="${CLICKHOUSE_HOST:-clickhouse}"
 CLICKHOUSE_PORT="${CLICKHOUSE_PORT:-9000}"
 
 # logic starts here
