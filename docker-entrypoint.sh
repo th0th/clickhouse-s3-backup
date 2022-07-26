@@ -21,12 +21,29 @@ CLICKHOUSE_PORT="${CLICKHOUSE_PORT:-9000}"
 DATED_FILE_NAME=$(date +"${FILE_NAME}")
 DATED_FILE_NAME_GZ="${DATED_FILE_NAME}.gz"
 
+CLICKHOUSE_CLIENT_PARAMS=(
+  "--host ${CLICKHOUSE_HOST}"
+  "--port ${CLICKHOUSE_PORT}"
+  "--query \"${CLICKHOUSE_QUERY}\""
+  "--format Native"
+)
+
+if [ -n "${CLICKHOUSE_DATABASE}" ]; then
+  CLICKHOUSE_CLIENT_PARAMS+=("--database ${CLICKHOUSE_DATABASE}")
+fi
+
+if [ -n "${CLICKHOUSE_PASSWORD}" ]; then
+  CLICKHOUSE_CLIENT_PARAMS+=("--password ${CLICKHOUSE_PASSWORD}")
+fi
+
+if [ -n "${CLICKHOUSE_USER}" ]; then
+  CLICKHOUSE_CLIENT_PARAMS+=("--user ${CLICKHOUSE_USER}")
+fi
+
+echo "${CLICKHOUSE_CLIENT_PARAMS[@]}"
+
 echo "Exporting the results for the query..."
-clickhouse-client \
-  --host "${CLICKHOUSE_HOST}" \
-  --port "${CLICKHOUSE_PORT}" \
-  --query "${CLICKHOUSE_QUERY}" \
-  --format Native | pigz --fast > "${DATED_FILE_NAME_GZ}"
+clickhouse-client ${CLICKHOUSE_CLIENT_PARAMS[@]} | pigz --fast > "${DATED_FILE_NAME_GZ}"
 echo "Exporting the results for the query... Done."
 
 echo "Uploading to S3..."
