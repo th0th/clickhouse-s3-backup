@@ -12,6 +12,7 @@ SECONDS=0
 : "${CLICKHOUSE_QUERY:?Please set the environment variable.}"
 
 # optional environment variables with defaults
+AWS_S3_STORAGE_CLASS="${AWS_S3_STORAGE_CLASS:-STANDARD_IA}"
 FILE_NAME="${FILE_NAME:-"%F_%T"}"
 CLICKHOUSE_HOST="${CLICKHOUSE_HOST:-clickhouse}"
 CLICKHOUSE_PORT="${CLICKHOUSE_PORT:-9000}"
@@ -42,7 +43,7 @@ echo "Uploading to S3..."
 rclone copyto \
   --s3-no-check-bucket \
   "./${DATED_FILE_NAME_GZ}" \
-  ":s3,access_key_id=${AWS_ACCESS_KEY_ID},provider=AWS,region=${AWS_REGION},secret_access_key=${AWS_SECRET_ACCESS_KEY},storage_class=GLACIER:${AWS_S3_ENDPOINT}/${DATED_FILE_NAME_GZ}"
+  ":s3,access_key_id=${AWS_ACCESS_KEY_ID},provider=AWS,region=${AWS_REGION},secret_access_key=${AWS_SECRET_ACCESS_KEY},storage_class=${AWS_S3_STORAGE_CLASS}:${AWS_S3_ENDPOINT}/${DATED_FILE_NAME_GZ}"
 echo "Uploading to S3... Done."
 
 if [ -n "${WEBGAZER_PULSE_URL}" ]; then
