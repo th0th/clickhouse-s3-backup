@@ -22,36 +22,40 @@
 
 ### Running
 
-    $ docker run th0th/clickhouse-s3-backup \
-        -e AWS_ACCESS_KEY_ID=<aws_access_key_id> \
-        -e AWS_REGION=<aws_region> \
-        -e AWS_S3_ENDPOINT=<aws_s3_endpoint> \
-        -e AWS_S3_STORAGE_CLASS=<aws_s3_storage_class[STANDARD_IA]> \
-        -e AWS_SECRET_ACCESS_KEY=<aws_secret_access_key> \
-        -e CLICKHOUSE_DATABASE=<clickhouse_database[default]> \
-        -e CLICKHOUSE_HOST=<clickhouse_host[clickhouse]> \
-        -e CLICKHOUSE_PASSWORD=<clickhouse_password[n/a]> \
-        -e CLICKHOUSE_PORT=<clickhouse_port[9000]> \
-        -e CLICKHOUSE_QUERY=<clickhouse_query> \
-        -e CLICKHOUSE_USER=<clickhouse_user[clickhouse]> \
-        -e FILE_NAME=<file_name> \
-        -e WEBGAZER_PULSE_URL=<webgazer_pulse_url>
+```shell
+$ docker run th0th/clickhouse-s3-backup \
+    -e AWS_ACCESS_KEY_ID=<aws_access_key_id> \
+    -e AWS_REGION=<aws_region> \
+    -e AWS_S3_ENDPOINT=<aws_s3_endpoint> \
+    -e AWS_S3_STORAGE_CLASS=<aws_s3_storage_class[STANDARD_IA]> \
+    -e AWS_SECRET_ACCESS_KEY=<aws_secret_access_key> \
+    -e CLICKHOUSE_DATABASE=<clickhouse_database[default]> \
+    -e CLICKHOUSE_HOST=<clickhouse_host[clickhouse]> \
+    -e CLICKHOUSE_PASSWORD=<clickhouse_password[n/a]> \
+    -e CLICKHOUSE_PORT=<clickhouse_port[9000]> \
+    -e CLICKHOUSE_QUERY=<clickhouse_query> \
+    -e CLICKHOUSE_USER=<clickhouse_user[clickhouse]> \
+    -e FILE_NAME=<file_name> \
+    -e WEBGAZER_PULSE_URL=<webgazer_pulse_url>
+```
 
 ### Example
 
-    $ docker run th0th/postgres-s3 \
-        -e AWS_ACCESS_KEY_ID=g9XqNnqKmUk6xqwkStkN \
-        -e AWS_REGION=eu-west-1 \
-        -e AWS_SECRET_ACCESS_KEY=GLBZ8mQf27UL57YHbkLhXWtfJWVwtUBbQup6mFzw \
-        -e AWS_S3_ENDPOINT=my-bucket/path \
-        -e AWS_S3_STORAGE_CLASS=GLACIER \
-        -e CLICKHOUSE_DATABASE=events \
-        -e CLICKHOUSE_HOST=clickhouse-server \
-        -e CLICKHOUSE_PASSWORD=wcjj8CioEpqaY2VY \
-        -e CLICKHOUSE_QUERY="select * from table1" \
-        -e CLICKHOUSE_USER=clickhouse_user
-        -e FILE_NAME="table1_backup-%F_%T" \
-        -e WEBGAZER_PULSE_URL=https://pulse.webgazer.io/1-8f713c75d659
+```shell
+$ docker run th0th/postgres-s3 \
+    -e AWS_ACCESS_KEY_ID=g9XqNnqKmUk6xqwkStkN \
+    -e AWS_REGION=eu-west-1 \
+    -e AWS_SECRET_ACCESS_KEY=GLBZ8mQf27UL57YHbkLhXWtfJWVwtUBbQup6mFzw \
+    -e AWS_S3_ENDPOINT=my-bucket/path \
+    -e AWS_S3_STORAGE_CLASS=GLACIER \
+    -e CLICKHOUSE_DATABASE=events \
+    -e CLICKHOUSE_HOST=clickhouse-server \
+    -e CLICKHOUSE_PASSWORD=wcjj8CioEpqaY2VY \
+    -e CLICKHOUSE_QUERY="select * from table1" \
+    -e CLICKHOUSE_USER=clickhouse_user
+    -e FILE_NAME="table1_backup-%F_%T" \
+    -e WEBGAZER_PULSE_URL=https://pulse.webgazer.io/1-8f713c75d659
+```
 
 ## Shameless plug
 
