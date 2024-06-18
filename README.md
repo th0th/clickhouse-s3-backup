@@ -4,21 +4,21 @@
 
 ### Environment variables
 
-| Variable              | Required | Default value | Description                                                                                                                   |
-|-----------------------|:--------:|---------------|-------------------------------------------------------------------------------------------------------------------------------|
-| AWS_ACCESS_KEY_ID     |    ✔     |               | Access key id for the AWS account                                                                                             |
-| AWS_REGION            |    ✔     |               | Region for the AWS bucket                                                                                                     |
-| AWS_S3_ENDPOINT       |    ✔     |               | AWS S3 endpoint with bucket and path (e.g. "my-bucket/postgres-backup")                                                       |
-| AWS_S3_STORAGE_CLASS  |          | STANDARD_IA   | AWS S3 storage class (see https://aws.amazon.com/s3/storage-classes/ and https://rclone.org/s3/#s3-storage-class for options. |
-| AWS_SECRET_ACCESS_KEY |    ✔     |               | Secret access key for the AWS account                                                                                         |
-| CLICKHOUSE_DATABASE   |          | default       | ClickHouse server database                                                                                                    |
-| CLICKHOUSE_HOST       |          | clickhouse    | ClickHouse server host                                                                                                        |
-| CLICKHOUSE_PASSWORD   |          |               | ClickHouse server password                                                                                                    |
-| CLICKHOUSE_PORT       |          | 9000          | ClickHouse server port                                                                                                        |
-| CLICKHOUSE_QUERY      |    ✔     |               | ClickHouse query to get the data                                                                                              |
-| CLICKHOUSE_USER       |          | default       | ClickHouse server user                                                                                                        |
-| FILE_NAME             |          | %F_%T         | Name of the file for the data export (it can include [date format](https://man7.org/linux/man-pages/man1/date.1.html))        |
-| WEBGAZER_PULSE_URL    |          |               | [WebGazer Pulse](https://www.webgazer.io/pulse) URL                                                                           |
+| Variable               | Required | Default value | Description                                                                                                                   |
+|------------------------|:--------:|---------------|-------------------------------------------------------------------------------------------------------------------------------|
+| AWS_ACCESS_KEY_ID      |    ✔     |               | Access key id for the AWS account                                                                                             |
+| AWS_REGION             |    ✔     |               | Region for the AWS bucket                                                                                                     |
+| AWS_S3_ENDPOINT        |    ✔     |               | AWS S3 endpoint with bucket and path (e.g. "my-bucket/postgres-backup")                                                       |
+| AWS_S3_STORAGE_CLASS   |          | STANDARD_IA   | AWS S3 storage class (see https://aws.amazon.com/s3/storage-classes/ and https://rclone.org/s3/#s3-storage-class for options. |
+| AWS_SECRET_ACCESS_KEY  |    ✔     |               | Secret access key for the AWS account                                                                                         |
+| CLICKHOUSE_DATABASE    |          | default       | ClickHouse server database                                                                                                    |
+| CLICKHOUSE_HOST        |          | clickhouse    | ClickHouse server host                                                                                                        |
+| CLICKHOUSE_PASSWORD    |          |               | ClickHouse server password                                                                                                    |
+| CLICKHOUSE_PORT        |          | 9000          | ClickHouse server port                                                                                                        |
+| CLICKHOUSE_QUERY       |    ✔     |               | ClickHouse query to get the data                                                                                              |
+| CLICKHOUSE_USER        |          | default       | ClickHouse server user                                                                                                        |
+| FILE_NAME              |          | %F_%T         | Name of the file for the data export (it can include [date format](https://man7.org/linux/man-pages/man1/date.1.html))        |
+| WEBGAZER_HEARTBEAT_URL |          |               | [WebGazer Heartbeat Monitor](https://www.webgazer.io/services/cron-job-monitoring) URL                                        |
 
 ### Running
 
@@ -36,7 +36,7 @@ $ docker run th0th/clickhouse-s3-backup \
     -e CLICKHOUSE_QUERY=<clickhouse_query> \
     -e CLICKHOUSE_USER=<clickhouse_user[clickhouse]> \
     -e FILE_NAME=<file_name> \
-    -e WEBGAZER_PULSE_URL=<webgazer_pulse_url>
+    -e WEBGAZER_HEARTBEAT_URL=<webgazer_heartbeat_url>
 ```
 
 ### Example
@@ -54,7 +54,7 @@ $ docker run th0th/postgres-s3 \
     -e CLICKHOUSE_QUERY="select * from table1" \
     -e CLICKHOUSE_USER=clickhouse_user
     -e FILE_NAME="table1_backup-%F_%T" \
-    -e WEBGAZER_PULSE_URL=https://pulse.webgazer.io/1-8f713c75d659
+    -e WEBGAZER_HEARTBEAT_URL=https://heartbeat.webgazer.io/1-8f713c75d659
 ```
 
 ## Shameless plug
